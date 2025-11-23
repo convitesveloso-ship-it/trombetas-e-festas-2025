@@ -78,7 +78,7 @@
     <button onclick="gerarImagem()">Gerar Imagem</button>
     
     <button onclick="copiarLink()">Copiar link da transmissão online</button>
-<button onclick="enviarWhatsAppLink()">Enviar link pelo WhatsApp</button>
+
 
     <canvas id="canvas"></canvas>
   </div>
@@ -106,15 +106,15 @@
         ctx.drawImage(baseImg, 0, 0);
 
         // Nome do convidado — posição superior
-        ctx.font = "bold 110px 'Poppins'";
+        ctx.font = "bold 50px 'Poppins'";
         ctx.fillStyle = "#fff";
        ctx.textAlign = "right"; 
-ctx.font = "bold 110px 'Poppins'";
+ctx.font = "bold 80px 'Poppins'";
 ctx.fillStyle = "#fff";
 
 /* Ajuste fino da posição */
-const margemDireita = 90;   // distância da borda direita
-const posicaoY = 180;        // altura no topo
+const margemDireita = 50;   // distância da borda direita
+const posicaoY = 90;        // altura no topo
 
 ctx.fillText(nome, canvas.width - margemDireita, posicaoY);
 
@@ -125,9 +125,14 @@ ctx.fillText(nome, canvas.width - margemDireita, posicaoY);
         link.download = `convite-${nome}.png`;
         link.href = canvas.toDataURL("image/png");
         link.click();
-      };
-    }
-  </script>
-
+}
+// Copiar link da transmissão
+function copiarLink() {
+const link = "https://www.youtube.com/watch?v=n_bLGbaXabk";
+navigator.clipboard.writeText(link)
+.then(() => alert("Link copiado para a área de transferência!"))
+.catch(() => alert("Não foi possível copiar o link."));
+}
+</script>
 </body>
 </html>
