@@ -53,7 +53,7 @@
       font-size: 16px;
       cursor: pointer;
       margin-top: 10px;
-      background: #8c3ffd;
+      background: #0f1722;
       color: white;
       font-weight: bold;
       font-family: 'Poppins', sans-serif;
@@ -103,11 +103,16 @@
 
         // Nome do convidado — posição superior
         ctx.font = "bold 110px 'Poppins'";
-        ctx.fillStyle = "#000";
-        ctx.textAlign = "center";
+        ctx.fillStyle = "#fffff";
+        ctx.textAlign = "right"; 
+ctx.font = "bold 110px 'Poppins'";
+ctx.fillStyle = "#000";
 
-        // ajuste fino da posição (pode mudar se quiser)
-        ctx.fillText(nome, canvas.width / 2, 260);
+/* Ajuste fino da posição */
+const margemDireita = 120;   // distância da borda direita
+const posicaoY = 260;        // altura no topo
+
+ctx.fillText(nome, canvas.width - margemDireita, posicaoY);
 
         canvas.style.display = "block";
 
