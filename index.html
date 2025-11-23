@@ -120,19 +120,21 @@ ctx.fillText(nome, canvas.width - margemDireita, posicaoY);
 
         canvas.style.display = "block";
 
-        // Download automático como PNG
         const link = document.createElement("a");
-        link.download = `convite-${nome}.png`;
-        link.href = canvas.toDataURL("image/png");
-        link.click();
-}
-// Copiar link da transmissão
-function copiarLink() {
-const link = "https://www.youtube.com/watch?v=n_bLGbaXabk";
-navigator.clipboard.writeText(link)
-.then(() => alert("Link copiado para a área de transferência!"))
-.catch(() => alert("Não foi possível copiar o link."));
-}
+      link.download = `convite-${nome}.png`;
+      link.href = canvas.toDataURL("image/png");
+      link.click();
+    };
+  }
+
+  // ✅ COPIAR LINK — AGORA FORA DA OUTRA FUNÇÃO
+  function copiarLink() {
+    const link = "https://www.youtube.com/watch?v=n_bLGbaXabk";
+
+    navigator.clipboard.writeText(link)
+      .then(() => alert("Link copiado para a área de transferência!"))
+      .catch(() => alert("Não foi possível copiar o link."));
+  }
 </script>
 </body>
 </html>
