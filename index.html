@@ -50,7 +50,7 @@
       width: 100%;
       padding: 12px;
       border: none;
-      border-radius: 10px;
+      border-radius: 10px;//
       font-size: 16px;
       cursor: pointer;
       margin-top: 10px;
@@ -71,7 +71,6 @@
     <img id="conviteBase" src="assets/trombetas-2025.png" alt="Convite" />
 
     <h2>Trombetas e Festas</h2>
-    <p>Digite o nome do convidado:</p>
 
     <input id="nomeInput" placeholder="Nome do convidado" />
 
@@ -118,7 +117,6 @@ const posicaoY = 90;        // altura no topo
 
 ctx.fillText(nome, canvas.width - margemDireita, posicaoY);
 
-        canvas.style.display = "block";
 
         const link = document.createElement("a");
       link.download = `convite-${nome}.png`;
