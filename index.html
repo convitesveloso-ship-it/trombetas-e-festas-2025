@@ -4,10 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Trombetas e Festas – Convite</title>
+
+  <!-- Fonte Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
   <style>
     body {
       margin: 0;
-      font-family: poppins, sans-serif;
+      font-family: 'Poppins', sans-serif;
       background: #f6f6f6;
       display: flex;
       justify-content: center;
@@ -30,16 +34,16 @@
       margin-bottom: 15px;
     }
 
-input {
-  width: 80%;
-  max-width: 500px;
-  padding: 15px;
-  font-size: 18px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  display: block;
-  margin: 0 auto;
-}
+    input {
+      width: 90%;
+      padding: 15px;
+      font-size: 18px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      display: block;
+      margin: 0 auto;
+      font-family: 'Poppins', sans-serif;
+    }
 
     button {
       width: 100%;
@@ -52,6 +56,7 @@ input {
       background: #8c3ffd;
       color: white;
       font-weight: bold;
+      font-family: 'Poppins', sans-serif;
     }
 
     canvas {
@@ -60,6 +65,7 @@ input {
   </style>
 </head>
 <body>
+
   <div class="card">
     <img id="conviteBase" src="assets/trombetas-2025.png" alt="Convite" />
 
@@ -67,43 +73,52 @@ input {
     <p>Digite o nome do convidado:</p>
 
     <input id="nomeInput" placeholder="Nome do convidado" />
+
     <button onclick="gerarImagem()">Gerar Imagem</button>
-    <button onclick="baixarPDF()">Baixar PDF</button>
 
     <canvas id="canvas"></canvas>
   </div>
 
   <script>
     function gerarImagem() {
-      const nome = document.getElementById("nomeInput").value;
-      const baseImg = document.getElementById("conviteBase");
+      const nome = document.getElementById("nomeInput").value.trim();
+      if (!nome) {
+        alert("Digite um nome para gerar o convite.");
+        return;
+      }
+
+      const baseImg = new Image();
+      baseImg.src = "assets/trombetas-2025.png";
+
       const canvas = document.getElementById("canvas");
       const ctx = canvas.getContext("2d");
 
-      canvas.width = baseImg.width;
-      canvas.height = baseImg.height;
+      baseImg.onload = function () {
 
-      ctx.drawImage(baseImg, 0, 0);
+        // Garante tamanho real da imagem
+        canvas.width = baseImg.naturalWidth;
+        canvas.height = baseImg.naturalHeight;
 
-      ctx.font = "40px serif";
-      ctx.fillStyle = "#000";
-      ctx.textAlign = "center";
-      ctx.fillText(nome, canvas.width / 2, 150);
+        ctx.drawImage(baseImg, 0, 0);
 
-      canvas.style.display = "block";
+        // Nome do convidado — posição superior
+        ctx.font = "bold 110px 'Poppins'";
+        ctx.fillStyle = "#000";
+        ctx.textAlign = "center";
 
-      const link = document.createElement("a");
-      link.download = `convite-${nome}.png`;
-      link.href = canvas.toDataURL();
-      link.click();
-    }
+        // ajuste fino da posição (pode mudar se quiser)
+        ctx.fillText(nome, canvas.width / 2, 260);
 
-    function baixarPDF() {
-      const canvas = document.getElementById('canvas');
-      const imgData = canvas.toDataURL('image/png');
-      const pdfWindow = window.open('');
-      pdfWindow.document.write(`<iframe width='100%' height='100%' src='${imgData}'></iframe>`);
+        canvas.style.display = "block";
+
+        // Download automático como PNG
+        const link = document.createElement("a");
+        link.download = `convite-${nome}.png`;
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+      };
     }
   </script>
+
 </body>
 </html>
