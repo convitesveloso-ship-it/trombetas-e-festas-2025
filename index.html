@@ -1,129 +1,70 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Trombetas e Festas – Convite</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Trombetas e Festas – Convite</title>
+<style>
+body {
+margin: 0;
+font-family: Arial, sans-serif;
+background: #f6f6f6;
+display: flex;
+justify-content: center;
+padding: 20px;
+}
 
-  <!-- Fonte Poppins -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: #f6f6f6;
-      display: flex;
-      justify-content: center;
-      padding: 20px;
-    }
+.card {
+background: white;
+width: 100%;
+max-width: 420px;
+padding: 20px;
+border-radius: 20px;
+box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+text-align: center;
+}
 
-    .card {
-      background: white;
-      width: 100%;
-      max-width: 420px;
-      padding: 20px;
-      border-radius: 20px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-      text-align: center;
-    }
 
-    .card img {
-      width: 100%;
-      border-radius: 12px;
-      margin-bottom: 15px;
-    }
+.card img {
+width: 100%;
+border-radius: 12px;
+margin-bottom: 15px;
+}
 
-    input {
-      width: 90%;
-      padding: 15px;
-      font-size: 18px;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-      display: block;
-      margin: 0 auto;
-      font-family: 'Poppins', sans-serif;
-    }
 
-    button {
-      width: 100%;
-      padding: 12px;
-      border: none;
-      border-radius: 10px;
-      font-size: 16px;
-      cursor: pointer;
-      margin-top: 10px;
-      background: #0f1722;
-      color: white;
-      font-weight: bold;
-      font-family: 'Poppins', sans-serif;
-    }
+input {
+width: 100%;
+padding: 12px;
+margin: 10px 0;
+border-radius: 8px;
+border: 1px solid #ccc;
+font-size: 16px;
+}
 
-    canvas {
-      display: none;
-    }
-  </style>
+
+button {
+width: 100%;
+padding: 12px;
+border: none;
+border-radius: 10px;
+font-size: 16px;
+cursor: pointer;
+margin-top: 10px;
+background: #8c3ffd;
+color: white;
+font-weight: bold;
+}
+
+
+canvas {
+display: none;
+}
+</style>
 </head>
 <body>
+<div class="card">
+<img id="conviteBase" src="assets/trombetas-2025.png" alt="Convite" />
 
-  <div class="card">
-    <img id="conviteBase" src="assets/trombetas-2025.png" alt="Convite" />
 
-    <h2>Trombetas e Festas</h2>
-    <p>Digite o nome do convidado:</p>
-
-    <input id="nomeInput" placeholder="Nome do convidado" />
-
-    <button onclick="gerarImagem()">Gerar Imagem</button>
-
-    <canvas id="canvas"></canvas>
-  </div>
-
-  <script>
-    function gerarImagem() {
-      const nome = document.getElementById("nomeInput").value.trim();
-      if (!nome) {
-        alert("Digite um nome para gerar o convite.");
-        return;
-      }
-
-      const baseImg = new Image();
-      baseImg.src = "assets/trombetas-2025.png";
-
-      const canvas = document.getElementById("canvas");
-      const ctx = canvas.getContext("2d");
-
-      baseImg.onload = function () {
-
-        // Garante tamanho real da imagem
-        canvas.width = baseImg.naturalWidth;
-        canvas.height = baseImg.naturalHeight;
-
-        ctx.drawImage(baseImg, 0, 0);
-
-        // Nome do convidado — posição superior
-        ctx.font = "bold 110px 'Poppins'";
-        ctx.fillStyle = "#ffffff";
-        ctx.textAlign = "right"; 
-ctx.font = "bold 110px 'Poppins'";
-ctx.fillStyle = "#000";
-
-/* Ajuste fino da posição */
-const margemDireita = 90;   // distância da borda direita
-const posicaoY = 200;        // altura no topo
-
-ctx.fillText(nome, canvas.width - margemDireita, posicaoY);
-
-        canvas.style.display = "block";
-
-        // Download automático como PNG
-        const link = document.createElement("a");
-        link.download = `convite-${nome}.png`;
-        link.href = canvas.toDataURL("image/png");
-        link.click();
-      };
-    }
-  </script>
-
-</body>
-</html>
+<h2>Trombetas e Festas</h2>
